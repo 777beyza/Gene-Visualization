@@ -1,0 +1,11 @@
+Gene,Condition,Expression
+GEN1,Koşul_A,5.2
+GEN2,Koşul_A,8.1
+GEN3,Koşul_A,1.5
+GEN4,Koşul_A,9.3
+GEN5,Koşul_A,4.7
+GEN1,Koşul_B,3.1
+GEN2,Koşul_B,7.8
+GEN3,Koşul_B,2.9
+GEN4,Koşul_B,6.4
+GEN5,Koşul_B,9.5
