@@ -81,15 +81,10 @@ class GeneVizApp:
         )
 
     def setup_ui(self):
-        # Main frame with padding
         main_frame = ttk.Frame(self.root, padding="10")
         main_frame.pack(fill=tk.BOTH, expand=True)
-
-        # File and Graph Selection Frame
         control_frame = ttk.Frame(main_frame)
         control_frame.pack(pady=10, fill=tk.X)
-
-        # File selection frame
         file_frame = ttk.LabelFrame(control_frame, text="1. Veri Dosyası Seç")
         file_frame.pack(side=tk.LEFT, padx=5, pady=5, fill=tk.X, expand=True)
         self.file_path_label = ttk.Label(file_frame, text="Henüz dosya seçilmedi.")
@@ -97,7 +92,6 @@ class GeneVizApp:
         select_btn = ttk.Button(file_frame, text="Dosya Seç", command=self.load_data)
         select_btn.pack(side=tk.RIGHT, padx=5, pady=5)
 
-        # Graph selection frame
         graph_frame = ttk.LabelFrame(control_frame, text="2. Grafik Tipi Seç")
         graph_frame.pack(side=tk.LEFT, padx=5, pady=5, fill=tk.X, expand=True)
         self.graph_type = tk.StringVar(value="Manhattan Plot")
@@ -132,11 +126,8 @@ class GeneVizApp:
             command=self.toggle_settings,
         ).pack(side=tk.LEFT, padx=5)
 
-        # Settings and Draw Button Frame
         settings_and_draw_frame = ttk.Frame(main_frame)
         settings_and_draw_frame.pack(fill=tk.BOTH, expand=True)
-
-        # Shared settings frame for all plots
         self.common_settings_frame = ttk.LabelFrame(
             settings_and_draw_frame, text="Genel Ayarlar"
         )
@@ -147,8 +138,6 @@ class GeneVizApp:
         self.title_entry = ttk.Entry(self.common_settings_frame, width=40)
         self.title_entry.pack(side=tk.LEFT, padx=5, pady=5)
         self.title_entry.insert(0, "Grafik Başlığı")
-
-        # Specific settings frames
         self.manhattan_settings_frame = ttk.LabelFrame(
             settings_and_draw_frame, text="Manhattan Ayarları"
         )
@@ -161,8 +150,6 @@ class GeneVizApp:
         self.volcano_settings_frame = ttk.LabelFrame(
             settings_and_draw_frame, text="Volcano Plot Ayarları"
         )
-
-        # Volcano Plot specific settings
         ttk.Label(self.volcano_settings_frame, text="log2 Kat Değişimi Eşiği:").pack(
             side=tk.LEFT, padx=5, pady=5
         )
@@ -176,8 +163,6 @@ class GeneVizApp:
         self.p_value_entry = ttk.Entry(self.volcano_settings_frame, width=10)
         self.p_value_entry.pack(side=tk.LEFT, padx=5, pady=5)
         self.p_value_entry.insert(0, "0.05")
-
-        # Venn Diagram specific settings
         ttk.Label(self.venn_settings_frame, text="Set 1 (Etiket):").pack(
             side=tk.TOP, anchor=tk.W, padx=5, pady=2
         )
@@ -209,26 +194,17 @@ class GeneVizApp:
         )
         self.venn_set3_entry = tk.Text(self.venn_settings_frame, height=2, width=40)
         self.venn_set3_entry.pack(side=tk.TOP, fill=tk.X, padx=5, pady=2)
-
-        # Draw button
         draw_btn = ttk.Button(main_frame, text="Grafik Çiz", command=self.draw_plot)
         draw_btn.pack(pady=10)
-
-        # Status message
         self.status_label = ttk.Label(main_frame, text="", foreground="blue")
         self.status_label.pack(pady=10)
-
-        # Initially show settings for Manhattan Plot
         self.toggle_settings()
 
     def toggle_settings(self):
-        # Hide all settings frames
         self.manhattan_settings_frame.pack_forget()
         self.venn_settings_frame.pack_forget()
         self.heatmap_settings_frame.pack_forget()
         self.volcano_settings_frame.pack_forget()
-
-        # Show the relevant settings frame
         selected_plot = self.graph_type.get()
         if selected_plot == "Manhattan Plot":
             self.manhattan_settings_frame.pack(pady=10, fill=tk.X)
@@ -312,7 +288,7 @@ class GeneVizApp:
                 sets.append(set3_genes)
                 labels.append(
                     self.venn_label3_entry.get()
-                )  # Updated to get label for set 3
+                )  
 
             if not set1_genes or not set2_genes:
                 messagebox.showwarning(
